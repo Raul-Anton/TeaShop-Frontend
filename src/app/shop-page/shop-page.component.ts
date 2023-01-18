@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../services/product-service';
 
@@ -11,10 +11,24 @@ import { ProductService } from '../services/product-service';
 export class ShopPageComponent implements OnInit {
 
   productGet!: Observable<Product[]>;
-  constructor(private productService: ProductService) { }
+  static productOrders: Product[] = [];
+
+  constructor(private productService: ProductService) {
+   }
 
   ngOnInit(): void {
     this.productGet = this.productService.getProducts();
+  }
+
+  deleteProduct(id: string): void {   
+    this.productService.deleteProduct(id).subscribe((response) => {
+      this.ngOnInit();
+    })
+  }
+
+  buyProduct(product: Product) : void {
+    ShopPageComponent.productOrders[ShopPageComponent.productOrders.length] = product;
+    console.log(ShopPageComponent.productOrders);
   }
 }
 

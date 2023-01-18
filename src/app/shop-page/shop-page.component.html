@@ -14,6 +14,16 @@
                 <mat-card-subtitle>{{product.image.id}}</mat-card-subtitle>
                 <mat-card-subtitle>{{product.image.azurePath}}</mat-card-subtitle>
             </mat-card-header>
+            <mat-card-footer>
+                <mat-card-actions>
+                    <button (click)="deleteProduct(product.id)" mat-stroked-button>
+                        Delete
+                    </button>
+                    <button (click)="buyProduct(product)" mat-stroked-button>
+                        Buy
+                    </button>
+                </mat-card-actions>               
+            </mat-card-footer>
         </mat-card>
 
     </mat-grid-tile>

@@ -11,12 +11,14 @@ import { ShopPageComponent } from './shop-page/shop-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateProductFormComponent } from './forms/create-product-form/create-product-form.component';
 import { ProductService } from './services/product-service';
+import { OrderPageComponent } from './order-page/order-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopPageComponent,
-    CreateProductFormComponent
+    CreateProductFormComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,
