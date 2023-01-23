@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { OrderService } from '../services/order-service';
 import { ProductOrderService } from '../services/productorder-service';
 import { ShopPageComponent } from '../shop-page/shop-page.component'; { }
@@ -11,11 +12,12 @@ import { ShopPageComponent } from '../shop-page/shop-page.component'; { }
 export class OrderPageComponent implements OnInit {
 
   productOrders = ShopPageComponent.productOrders;
-  displayedColumns: string[] = ['id', 'name', 'description', 'price', 'quantity'/*,'imageId','imageAzurePath'*/,'actions'];
+  displayedColumns: string[] = ['quantity', 'name', 'price', 'actions'];
 
   userId: string = 'a6810450-05d4-4271-c89e-08daf96acaac';
+  updateOrderToPlaced: Number = 3;
 
-  constructor(private orderService: OrderService, private productOrderService: ProductOrderService){ }
+  constructor(private orderService: OrderService, private productOrderService: ProductOrderService) { }
 
   ngOnInit(): void {
   }
@@ -26,14 +28,23 @@ export class OrderPageComponent implements OnInit {
   }
 
   createOrder(): void {
-    console.log('i arrived');
-    this.orderService.createOrder(this.userId).subscribe();
+    this.orderService.createOrder(this.userId).subscribe(result => { this.createProductOrders() });
   }
 
   createProductOrders(): void {
-    this.productOrders.forEach(element => {
-      this.productOrderService.createProductOrder()
-    });
+    this.orderService.getOrderCurrentUser(this.userId).subscribe(a => {
+      this.productOrders.forEach(element => {
+        this.productOrderService.createProductOrder(element.id, a.id).subscribe();
+      })
+
+      this.updateOrder(a.id);
+
+    }
+    );
+  }
+
+  updateOrder(currentOrder: string): void {
+    this.orderService.updateOrder(currentOrder, this.userId, this.updateOrderToPlaced).subscribe();
   }
 
 }

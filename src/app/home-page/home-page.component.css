@@ -1,9 +1,22 @@
-.orderPageBanner
+.homePageBanner
 {
     background-image: url('https://storageaccountinternship.blob.core.windows.net/images/homePage.jpg');
-    height:fit-content;
-    min-height: 93.4%;
+    height: 93.4%;
     width: auto;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.content
+{
+    top: 15%;
+    left: 5%;
+    position: absolute;
+}
+
+.homePageBanner h1
+{
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
 }

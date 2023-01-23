@@ -12,6 +12,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -33,6 +34,7 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     MatListModule,
     MatTableModule,
+    MatIconModule,
   ]
 })
 export class MaterialDesignModule { }

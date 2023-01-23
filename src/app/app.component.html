@@ -1,8 +1,20 @@
-<mat-toolbar color="primary" class="flex justify-content-between">
-  New Toolbar
+<mat-toolbar color="primary">
+  <span>Tea Shop</span>
 
-    <a routerLink="/shop" href="" mat-stroked-button>Shop</a>
-    <a routerLink="/order" href="" mat-stroked-button>Order</a>
+  <button routerLink="" mat-flat-button color="primary">Home</button>
+  <button routerLink="/shop" mat-flat-button color="primary">Shop</button>
+  <button routerLink="" mat-flat-button color="primary">My Orders</button>
+  <button routerLink="" mat-flat-button color="primary">Contact</button>
+
+  <span class="example-spacer"></span>
+
+  <button routerLink="/order" mat-icon-button class="cartIcon" aria-label="The cart icon">
+    <mat-icon>add_shopping_cart</mat-icon>
+  </button>
+  <button routerLink="/login" mat-icon-button class="userIcon" aria-label="The user icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
 
 </mat-toolbar>
 

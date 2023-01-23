@@ -12,13 +12,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateProductFormComponent } from './forms/create-product-form/create-product-form.component';
 import { ProductService } from './services/product-service';
 import { OrderPageComponent } from './order-page/order-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { MyOrdersPageComponent } from './my-orders-page/my-orders-page.component';
+import { LoginFormComponent } from './forms/login-form/login-form.component';
+import { RegisterFormComponent } from './forms/register-form/register-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopPageComponent,
     CreateProductFormComponent,
-    OrderPageComponent
+    OrderPageComponent,
+    HomePageComponent,
+    MyOrdersPageComponent,
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,53 +1,43 @@
-<table mat-table [dataSource]="productOrders" style="width: 100%;">
+<div class="orderPageBanner">
+    <mat-card style="margin-left: 25%; margin-right: 25%;">
 
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let product"> {{product.id}} </td>
-    </ng-container>
+        <mat-card-title>
+            My Products
+        </mat-card-title>
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let product"> {{product.name}} </td>
-    </ng-container>
+        <table mat-table [dataSource]="productOrders" style="width: 100%; height: auto;">
 
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let product"> {{product.description}} </td>
-    </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let product"> 1 </td>
+            </ng-container>
 
-    <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
-        <td mat-cell *matCellDef="let product"> {{product.price}} </td>
-    </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+            </ng-container>
 
-    <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef> Quantity </th>
-        <td mat-cell *matCellDef="let product"> {{product.quantity}} </td>
-    </ng-container>
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let product"> {{product.price}} $ </td>
+            </ng-container>
 
-    <!-- <ng-container matColumnDef="imageId">
-        <th mat-header-cell *matHeaderCellDef> ImageId </th>
-        <td mat-cell *matCellDef="let product"> {{product.image.id}} </td>
-    </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let product">
+                    <button (click)="deleteProductOrder(product.id)" mat-raised-button color="warn">Delete</button>
+                </td>
+            </ng-container>
 
-    <ng-container matColumnDef="imageAzurePath">
-        <th mat-header-cell *matHeaderCellDef> ImageAzurePath </th>
-        <td mat-cell *matCellDef="let product"> {{product.image.azurePath}} </td>
-    </ng-container> -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+        </table>
 
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let product"> {{product.id}}
-            <button (click)="deleteProductOrder(product.id)" mat-raised-button color="warn">Delete</button>
-        </td>
-    </ng-container>
+        <a>
+            <button style="margin-top: 2%;" (click)="createOrder()" mat-raised-button color="primary">
+                Order
+            </button>
+        </a>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
-</table>
-
-<a>
-    <button (click)="createOrder()" mat-stroked-button collor="warn">
-        Order
-    </button>
-</a>
+    </mat-card>
+</div>

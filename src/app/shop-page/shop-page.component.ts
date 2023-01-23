@@ -28,7 +28,6 @@ export class ShopPageComponent implements OnInit {
 
   buyProduct(product: Product) : void {
     ShopPageComponent.productOrders[ShopPageComponent.productOrders.length] = product;
-    console.log(ShopPageComponent.productOrders);
   }
 }
 

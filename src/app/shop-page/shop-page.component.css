@@ -1,0 +1,15 @@
+.example-card {
+    max-width: 400px;
+  }
+
+  
+.shopPageBanner
+{
+    background-image: url('https://storageaccountinternship.blob.core.windows.net/images/homePage.jpg');
+    height:fit-content;
+    min-height: 93.4%;
+    width: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
