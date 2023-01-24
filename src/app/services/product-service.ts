@@ -14,6 +14,10 @@ export class ProductService {
         return this.httpClient.get('https://localhost:7093/api/Product');
     }
 
+    uploadFile(file: any): Observable<any> {
+        return this.httpClient.post('https://localhost:7093/api/Product/image', {file});
+    }
+
     createProduct(name: string, description: string, price: string, quantity: string): Observable<any> {
         return this.httpClient.post('https://localhost:7093/api/Product', {name, description, price:parseFloat(price), quantity:parseInt(quantity)});
     }

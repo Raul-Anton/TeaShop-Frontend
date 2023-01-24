@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service';
+import { DomElementSchemaRegistry } from '@angular/compiler';
 
 @Component({
   selector: 'app-create-product-form',
@@ -11,7 +12,9 @@ import { ProductService } from 'src/app/services/product-service';
 })
 export class CreateProductFormComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private productService: ProductService) { }
+  constructor(private formBuilder:FormBuilder, private productService: ProductService, private httpClient: HttpClient) { }
+
+  file: any;
 
   ngOnInit(): void {
   }
@@ -25,8 +28,14 @@ export class CreateProductFormComponent implements OnInit {
     }
   )
 
+  onChange(event: any):void {
+    this.file = event.target.files[0];
+  }
+
   ngOnSubmit()
   {
-    this.productService.createProduct(this.productForm.value.name!, this.productForm.value.description!, this.productForm.value.price!, this.productForm.value.quantity!).subscribe();
+    let formData = new FormData();
+    formData.set("file",this.file);
+    this.httpClient.post('https://localhost:7093/api/Product/image', formData).subscribe(result => {this.productService.createProduct(this.productForm.value.name!, this.productForm.value.description!, this.productForm.value.price!, this.productForm.value.quantity!).subscribe();});
   }
 }

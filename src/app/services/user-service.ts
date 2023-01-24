@@ -12,7 +12,6 @@ export class UserService {
     }
 
     createUser(name: string, email: string, password: string, city: string, street: string, number: string): Observable<any> {
-        console.log('I arrived');
         return this.httpClient.post('https://localhost:7093/api/User', {name, email, password, address:{city, street, number:parseInt(number)}});
     }
 }

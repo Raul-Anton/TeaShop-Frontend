@@ -29,7 +29,12 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnSubmit(): void {
 
-    this.userService.createUser(this.registerForm.value.name!, this.registerForm.value.email!,this.registerForm.value.password!,this.registerForm.value.city!,this.registerForm.value.street!,this.registerForm.value.number!).subscribe();
+    this.userService.createUser(this.registerForm.value.name!, 
+      this.registerForm.value.email!,
+      this.registerForm.value.password!,
+      this.registerForm.value.city!,
+      this.registerForm.value.street!,
+      this.registerForm.value.number!).subscribe();
   }
 
 }

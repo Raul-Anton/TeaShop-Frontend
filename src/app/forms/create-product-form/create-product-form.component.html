@@ -32,7 +32,12 @@
                                 placeholder="Enter the product's quantity" required />
                         </mat-form-field>
 
+                        <label for="">Choose a product picture:</label>
+
+                        <input (change)="onChange($event)" type="file">
+
                     </form>
+
                 </mat-card-content>
 
                 <mat-divider></mat-divider>
