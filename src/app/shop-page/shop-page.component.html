@@ -1,4 +1,7 @@
 <div class="shopPageBanner">
+    <button routerLink="/create-product" mat-icon-button class="" aria-label="" color="primary">
+        <mat-icon>note_add</mat-icon>
+      </button>
     <mat-grid-list cols="3">
         <mat-grid-tile *ngFor="let product of productGet | async">
             <mat-card class="example-card">
@@ -11,6 +14,10 @@
                 <mat-card-content>
                     <p>{{product.description}}</p>
                 </mat-card-content>
+                <mat-card-content>
+                    <h2>Price: {{product.price}} $</h2>
+                </mat-card-content>
+                <mat-divider></mat-divider>
                 <mat-card-actions>
                     <button (click)="buyProduct(product)" mat-raised-button color="primary">
                         Buy
@@ -22,5 +29,4 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-    <a routerLink="/create-product" href="" mat-raised-button color="primary">Create Product</a>
 </div>

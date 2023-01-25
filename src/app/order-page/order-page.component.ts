@@ -14,6 +14,8 @@ export class OrderPageComponent implements OnInit {
   productOrders = ShopPageComponent.productOrders;
   displayedColumns: string[] = ['quantity', 'name', 'price', 'actions'];
 
+  totalPrice: number = ShopPageComponent.totalPrice;
+
   userId: string = 'a6810450-05d4-4271-c89e-08daf96acaac';
   updateOrderToPlaced: Number = 3;
 
@@ -22,9 +24,18 @@ export class OrderPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteProductOrder(id: string): void {
-    this.productOrders = this.productOrders.filter((data) => data.id != id);
-    ShopPageComponent.productOrders = ShopPageComponent.productOrders.filter((data) => data.id != id);
+  deleteProductOrder(product: Product): void {
+
+    console.log(this.productOrders);
+
+    this.productOrders = this.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
+    ShopPageComponent.productOrders = ShopPageComponent.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
+    
+    this.totalPrice = this.totalPrice - product.price;
+    ShopPageComponent.totalPrice = this.totalPrice;
+
+    console.log(this.productOrders);
+
   }
 
   createOrder(): void {
@@ -47,4 +58,20 @@ export class OrderPageComponent implements OnInit {
     this.orderService.updateOrder(currentOrder, this.userId, this.updateOrderToPlaced).subscribe();
   }
 
+}
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  image: Image;
+  uniqueNumber: number;
+}
+
+interface Image
+{
+  id: string;
+  azurePath: string;
 }

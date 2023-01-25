@@ -12,6 +12,7 @@ export class ShopPageComponent implements OnInit {
 
   productGet!: Observable<Product[]>;
   static productOrders: Product[] = [];
+  static totalPrice: number = 0;
 
   constructor(private productService: ProductService) {
    }
@@ -27,7 +28,14 @@ export class ShopPageComponent implements OnInit {
   }
 
   buyProduct(product: Product) : void {
+
     ShopPageComponent.productOrders[ShopPageComponent.productOrders.length] = product;
+    ShopPageComponent.totalPrice = ShopPageComponent.totalPrice + product.price;
+    ShopPageComponent.productOrders[ShopPageComponent.productOrders.length - 1].uniqueNumber = Math.floor(Math.random()*1000);
+
+    this.ngOnInit();
+
+
   }
 }
 
@@ -35,9 +43,10 @@ interface Product {
   id: string;
   name: string;
   description: string;
-  price: Float32Array;
-  quantity: Int16Array;
+  price: number;
+  quantity: number;
   image: Image;
+  uniqueNumber: number;
 }
 
 interface Image

@@ -25,13 +25,17 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let product">
-                    <button (click)="deleteProductOrder(product.id)" mat-raised-button color="warn">Delete</button>
+                    <button (click)="deleteProductOrder(product)" mat-raised-button color="warn">Delete</button>
                 </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
         </table>
+
+        <h2>
+            Total: {{totalPrice}} $
+        </h2>
 
         <a>
             <button style="margin-top: 2%;" (click)="createOrder()" mat-raised-button color="primary">
