@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrderService } from '../services/order-service';
 import { ProductOrderService } from '../services/productorder-service';
-import { ShopPageComponent } from '../shop-page/shop-page.component'; { }
+import { ShopPageComponent } from '../shop-page/shop-page.component';
+import { AppComponent } from '../app.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-order-page',
@@ -19,14 +22,12 @@ export class OrderPageComponent implements OnInit {
   userId: string = 'DFC9C866-9814-4AA8-5923-08DAFFA63AC5';
   updateOrderToPlaced: Number = 3;
 
-  constructor(private orderService: OrderService, private productOrderService: ProductOrderService) { }
+  constructor(private orderService: OrderService, private productOrderService: ProductOrderService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   deleteProductOrder(product: Product): void {
-
-    console.log(this.productOrders);
 
     this.productOrders = this.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
     ShopPageComponent.productOrders = ShopPageComponent.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
@@ -34,12 +35,25 @@ export class OrderPageComponent implements OnInit {
     this.totalPrice = this.totalPrice - product.price;
     ShopPageComponent.totalPrice = this.totalPrice;
 
-    console.log(this.productOrders);
+    this.snackbar.open('Product removed from the cart!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
 
+    AppComponent.badgeNumber --;
+  }
+
+  deleteProductOrderWithoutSnackBar(product: Product): void {
+
+    this.productOrders = this.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
+    ShopPageComponent.productOrders = ShopPageComponent.productOrders.filter((data) => data.uniqueNumber != product.uniqueNumber);
+    
+    this.totalPrice = this.totalPrice - product.price;
+    ShopPageComponent.totalPrice = this.totalPrice;
+
+    AppComponent.badgeNumber --;
   }
 
   createOrder(): void {
     this.orderService.createOrder(this.userId).subscribe(result => { this.createProductOrders() });
+    this.snackbar.open('Order Placed!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
   }
 
   createProductOrders(): void {
@@ -49,15 +63,19 @@ export class OrderPageComponent implements OnInit {
       })
 
       this.updateOrder(a.id);
-
     }
     );
   }
 
   updateOrder(currentOrder: string): void {
-    this.orderService.updateOrder(currentOrder, this.userId, this.updateOrderToPlaced).subscribe();
+    this.orderService.updateOrder(currentOrder, this.userId, this.updateOrderToPlaced).subscribe((result) => this.resetValuesOnOrderPlaced());
   }
 
+  resetValuesOnOrderPlaced(): void {
+    this.productOrders.forEach(product => {
+      this.deleteProductOrderWithoutSnackBar(product);
+    });
+  }
 }
 
 interface Product {

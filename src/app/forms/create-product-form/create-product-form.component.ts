@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/services/product-service';
 import { DomElementSchemaRegistry } from '@angular/compiler';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-create-product-form',
@@ -12,7 +14,7 @@ import { DomElementSchemaRegistry } from '@angular/compiler';
 })
 export class CreateProductFormComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private productService: ProductService, private httpClient: HttpClient) { }
+  constructor(private formBuilder:FormBuilder, private productService: ProductService, private httpClient: HttpClient, private snackbar: MatSnackBar) { }
 
   file: any;
 
@@ -34,6 +36,8 @@ export class CreateProductFormComponent implements OnInit {
 
   ngOnSubmit()
   {
+    this.snackbar.open('Product created!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
+
     let formData = new FormData();
     formData.set("file",this.file);
     this.httpClient.post('https://localhost:7093/api/Product/image', formData).subscribe(result => {this.productService.createProduct(this.productForm.value.name!, this.productForm.value.description!, this.productForm.value.price!, this.productForm.value.quantity!).subscribe();});

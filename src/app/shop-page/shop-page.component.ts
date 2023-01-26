@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Observable } from 'rxjs';
+import { endWith, interval, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../services/product-service';
+import { AppComponent } from '../app.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shop-page',
@@ -14,7 +16,7 @@ export class ShopPageComponent implements OnInit {
   static productOrders: Product[] = [];
   static totalPrice: number = 0;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private snackbar: MatSnackBar) {
    }
 
   ngOnInit(): void {
@@ -25,6 +27,8 @@ export class ShopPageComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe((response) => {
       this.ngOnInit();
     })
+
+    this.snackbar.open('Product deleted!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
   }
 
   buyProduct(product: Product) : void {
@@ -33,9 +37,11 @@ export class ShopPageComponent implements OnInit {
     ShopPageComponent.totalPrice = ShopPageComponent.totalPrice + product.price;
     ShopPageComponent.productOrders[ShopPageComponent.productOrders.length - 1].uniqueNumber = Math.floor(Math.random()*1000);
 
+    AppComponent.badgeNumber++;
+
+    this.snackbar.open('Product added to cart!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
+
     this.ngOnInit();
-
-
   }
 }
 

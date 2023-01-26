@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TeaShopFrontend';
+
+  static badgeNumber: number;
+
+  constructor() {
+    AppComponent.badgeNumber = 0;
+  }
+
+  get getBadgeNumber()
+  {
+    return AppComponent.badgeNumber;
+  }
 }

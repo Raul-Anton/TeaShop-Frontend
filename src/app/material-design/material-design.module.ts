@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -35,6 +38,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatListModule,
     MatTableModule,
     MatIconModule,
+    MatBadgeModule,
+    MatButtonToggleModule,
+    MatSnackBarModule,
   ]
 })
 export class MaterialDesignModule { }

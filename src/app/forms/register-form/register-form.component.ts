@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-register-form',
@@ -11,7 +13,7 @@ import { UserService } from 'src/app/services/user-service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder:FormBuilder, private userService: UserService, private snackbar: MatSnackBar) { }
 
   registerForm = this.formBuilder.group(
     {
@@ -35,6 +37,8 @@ export class RegisterFormComponent implements OnInit {
       this.registerForm.value.city!,
       this.registerForm.value.street!,
       this.registerForm.value.number!).subscribe();
-  }
 
+      this.snackbar.open('User created!', '',{duration: 1000 ,horizontalPosition: 'end', verticalPosition: 'bottom'} );
+
+  }
 }
