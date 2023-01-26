@@ -16,6 +16,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MyOrdersPageComponent } from './my-orders-page/my-orders-page.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { RegisterFormComponent } from './forms/register-form/register-form.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RegisterFormComponent } from './forms/register-form/register-form.compo
     HomePageComponent,
     MyOrdersPageComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ContactPageComponent
   ],
   imports: [
     BrowserModule,

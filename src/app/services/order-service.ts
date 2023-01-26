@@ -18,6 +18,10 @@ export class OrderService {
         return this.httpClient.get('https://localhost:7093/api/Order/Current-User/' + userId);
     }
 
+    getOrdersCurrentUser(userId: string): Observable<any> {
+        return this.httpClient.get('https://localhost:7093/api/Order/Current-User-Orders/' + userId);
+    }
+
     updateOrder(currentOrder: string, userId: string, orderStatus: Number): Observable<any> {
         return this.httpClient.put('https://localhost:7093/api/Order/' + currentOrder, {userId, orderStatus});
     }

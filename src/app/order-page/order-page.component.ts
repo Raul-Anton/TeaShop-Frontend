@@ -16,7 +16,7 @@ export class OrderPageComponent implements OnInit {
 
   totalPrice: number = ShopPageComponent.totalPrice;
 
-  userId: string = 'a6810450-05d4-4271-c89e-08daf96acaac';
+  userId: string = 'DFC9C866-9814-4AA8-5923-08DAFFA63AC5';
   updateOrderToPlaced: Number = 3;
 
   constructor(private orderService: OrderService, private productOrderService: ProductOrderService) { }

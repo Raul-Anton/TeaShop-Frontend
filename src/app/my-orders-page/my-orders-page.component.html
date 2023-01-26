@@ -1,1 +1,30 @@
-<p>my-orders-page works!</p>
+<div class="myOrdersPageBanner">
+    <mat-card style="margin-left: 25%; margin-right: 25%;">
+
+        <mat-card-title>
+            My Orders
+        </mat-card-title>
+
+        <table mat-table [dataSource]="orders" style="width: 100%; height: auto;">
+
+            <ng-container matColumnDef="OrderId">
+                <th mat-header-cell *matHeaderCellDef> OrderId </th>
+                <td mat-cell *matCellDef="let order"> {{order.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="UserId">
+                <th mat-header-cell *matHeaderCellDef> Email</th>
+                <td mat-cell *matCellDef="let order"> raul.anton1999@gmail.com </td>
+            </ng-container>
+
+            <ng-container matColumnDef="OrderStatus">
+                <th mat-header-cell *matHeaderCellDef> OrderStatus </th>
+                <td mat-cell *matCellDef="let order"> Placed </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+        </table>
+
+    </mat-card>
+</div>

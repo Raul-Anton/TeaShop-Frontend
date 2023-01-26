@@ -7,6 +7,7 @@ import { ShopPageComponent } from './shop-page/shop-page.component';
 import { MyOrdersPageComponent } from './my-orders-page/my-orders-page.component';
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import { RegisterFormComponent } from './forms/register-form/register-form.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path:'my-orders', component: MyOrdersPageComponent},
   { path:'login', component: LoginFormComponent},
   { path:'register', component: RegisterFormComponent},
+  { path:'contact', component: ContactPageComponent},
 
 ];
 

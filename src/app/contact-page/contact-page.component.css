@@ -1,4 +1,13 @@
-.myOrdersPageBanner
+.mat-card
+{
+    margin-top: 200px;
+
+    padding: 30px;
+    width: 100%;
+    height: auto;
+}
+
+.contactPageBanner
 {
     background-image: url('https://storageaccountinternship.blob.core.windows.net/images/homePage.jpg');
     height:fit-content;
